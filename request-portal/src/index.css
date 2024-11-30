@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.circle, .circle-b{
+    background: linear-gradient( #b9b7b7, #6D96FD)
+}
+.submit{
+    box-shadow: 2px 3px 3px 0 gray;
+    color: white;
+    font-size: large;
+}
