@@ -3,6 +3,10 @@ import loginImage from '../assets/student-1.png'
 import Logo from "../assets/oou-logo.png";
 import {useForm} from 'react-hook-form'
 import Button from './Button';
+import { useUser } from '../context/userContext';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useLogUserInMutation } from '../redux/features/adminApi';
 
 
 const Login = () => {
@@ -13,14 +17,20 @@ const Login = () => {
         formState: {errors}
     } = useForm()
 
-    const endpoint = ""
+    const [logUserIn, {isLoading, isError }] = useLogUserInMutation();
+    const navigate = useNavigate()
 
     const onSubmit = async(data)=>{
-        console.log(data)
+        console.log(data, 'login data')
+
         try {
-            
+            await logUserIn(data).unwrap();
+            alert('user logged in successfully')
+            navigate("/dashboard"); // Redirect to the dashboard 
+
         } catch (error) {
-            
+            console.error('Login failed', error);
+            alert(error?.data?.message || 'Login failed. Please try again.');
         }
     }
 
@@ -54,7 +64,7 @@ const Login = () => {
                     <div className='mb-10'>
                         <input type="password" name="password"
                         id='password' 
-                        {...register("Password", {required: "Password is required"})}
+                        {...register("password", {required: "Password is required"})}
                         className='shadow border-b border-black rounded w-full py-2 px-3 bg-[#DEDEFF] text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                         placeholder='Enter your password'
                         />

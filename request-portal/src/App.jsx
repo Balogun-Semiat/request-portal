@@ -1,15 +1,18 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar';
+import { UserProvider } from './context/userContext';
 
 const App = () => {
   return (
     <>
-      <Navbar />
-      <main className='min-h-screen font-primary'>
-      <Outlet /> 
-      </main>
-      <h2>Footer</h2>
+      <UserProvider>
+        <Navbar />
+        <main className='min-h-screen font-primary'>
+        <Outlet /> 
+        </main>
+        <h2>Footer</h2>
+      </UserProvider>
     </>
   )
 }

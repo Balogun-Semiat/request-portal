@@ -41,7 +41,7 @@ const NewRequest = () => {
     }
   }
   return (
-    <div>
+    <div className='max-w-xl mx-auto shadow-lg p-5 border my-5'>
       <h2 className='text-3xl font-bold my-5'>Submit a New Request</h2>
      
      <form action="" onSubmit={onSubmit}>
@@ -52,6 +52,7 @@ const NewRequest = () => {
           onChange={(e)=>setSelectedRequest(e.target.value)}
           className='px-3 py-1 text-lg border rounded-sm w-full mt-2'
           >
+            <option value="">-- Select a Request Type --</option>
             {
               requestTypes.map((type, index)=>(
                 <optgroup key={index} label={type.category}>

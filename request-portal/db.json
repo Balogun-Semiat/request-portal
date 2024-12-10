@@ -1,0 +1,87 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "John",
+      "lastName": "Doe",
+      "middleName": "Anthony",
+      "email": "john.doe@example.com",
+      "staffType": "Academic Staff",
+      "phoneNumber": "08012345678",
+      "departmentName": "Mathematics",
+      "nonAcademicUnitName": "",
+      "administrativeRole": "STAFF",
+      "password": "john"
+    },
+    {
+      "id": "2",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "middleName": "Elizabeth",
+      "email": "jane.smith@example.com",
+      "staffType": "Non-Academic Staff",
+      "phoneNumber": "08123456789",
+      "departmentName": "",
+      "nonAcademicUnitName": "Bursary Unit",
+      "administrativeRole": "HEAD_OF_UNIT",
+      "password": "jane"
+    },
+    {
+      "id": "3",
+      "firstName": "Alice",
+      "lastName": "Johnson",
+      "middleName": "Marie",
+      "email": "alice.johnson@example.com",
+      "staffType": "Administrative Staff",
+      "phoneNumber": "07098765432",
+      "departmentName": "Administration",
+      "nonAcademicUnitName": "",
+      "administrativeRole": "DEAN",
+      "password": "alice"
+    },
+    {
+      "id": "4",
+      "firstName": "Michael",
+      "lastName": "Brown",
+      "middleName": "James",
+      "email": "michael.brown@example.com",
+      "staffType": "Academic Staff",
+      "phoneNumber": "09012344321",
+      "departmentName": "Physics",
+      "nonAcademicUnitName": "",
+      "administrativeRole": "STAFF",
+      "password": "michael"
+    },
+    {
+      "id": "5",
+      "firstName": "Emily",
+      "lastName": "White",
+      "middleName": "Rose",
+      "email": "emily.white@example.com",
+      "staffType": "Non-Academic Staff",
+      "phoneNumber": "08056781234",
+      "departmentName": "",
+      "nonAcademicUnitName": "Library Services",
+      "administrativeRole": "STAFF",
+      "password": "emily"
+    },
+    {
+      "id": "dacf",
+      "administrativeRole": "STAFF",
+      "firstName": "Semiat",
+      "lastName": "Balogun",
+      "middleName": "Abosede",
+      "email": "balogunsemiat5@gmail.com",
+      "staffType": "Academic Staff",
+      "phoneNumber": "07086495645",
+      "departmentName": "Accounting",
+      "password": "semiat"
+    },
+    {
+      "id": "d904",
+      "email": "testram@gmail.com",
+      "Password": "test",
+      "password": "test"
+    }
+  ]
+}
