@@ -7,6 +7,7 @@ import { useUser } from '../context/userContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useLogUserInMutation } from '../redux/features/adminApi';
+import getBaseUrl from '../utils/baseUrl';
 
 
 const Login = () => {
@@ -21,17 +22,31 @@ const Login = () => {
     const navigate = useNavigate()
 
     const onSubmit = async(data)=>{
-        console.log(data, 'login data')
-
+        // console.log(data, 'login data')
+        
         try {
-            await logUserIn(data).unwrap();
-            alert('user logged in successfully')
-            navigate("/dashboard"); // Redirect to the dashboard 
-
+            await axios.post(`${getBaseUrl()}/oouweb/staffs/login`, data)
+            .then((response) => {
+                // Log all headers to debug
+                console.log('Headers:', response.headers);
+        
+                // Try fetching the token with different cases
+                const token = response.headers['Authorization'] || response.headers['authorization'];
+        
+                if (token) {
+                    console.log('Token:', token);
+                } else {
+                    console.error('Token not found in headers');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error.message);
+            });
         } catch (error) {
             console.error('Login failed', error);
             alert(error?.data?.message || 'Login failed. Please try again.');
         }
+        
     }
 
   return (

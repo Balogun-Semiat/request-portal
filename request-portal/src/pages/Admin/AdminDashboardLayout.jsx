@@ -45,7 +45,7 @@ const AdminDashboardLayout = () => {
        
           <aside className= {`fixed top-0 left-0 h-full bg-[#e4ecfa] w-64 shadow-md flex flex-col items-center transition-transform transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 md:static md:w-40`}>
+        } md:translate-x-0 md:static md:w-52 h-full`}>
 
             <div className='mt-10 mb-10'>
                 <div >

@@ -5,15 +5,20 @@ const adminApi = createApi({
     reducerPath: 'adminApi',
     baseQuery: fetchBaseQuery({
         baseUrl: `${getBaseUrl()}/oouweb`,
-        headers: {
-            'Content-Type': 'application/json',
+        prepareHeaders: (headers, { getState }) => {
+            const token = getState()?.auth?.token || localStorage.getItem('authToken');
+            if (token) {
+                headers.set('Authorization', `Bearer ${token}`);
+            }
+            headers.set('Content-Type', 'application/json');
+            return headers;
         },
     }),
-    tagTypes: ['Admin'],
+    tagTypes: ['Users', 'Campuses', 'Faculties'],
     endpoints: (builder) => ({
         getAllUsers: builder.query({
             query: () => `/staffs`,
-            providesTags: ['Admin'],
+            providesTags: ['Users'],
         }),
         createUser: builder.mutation({
             query: (addUser) => ({
@@ -21,54 +26,65 @@ const adminApi = createApi({
                 method: 'POST',
                 body: addUser,
             }),
-            // invalidatesTags: ['Admin'],
+            invalidatesTags: ['Users'],
         }),
-
         logUserIn: builder.mutation({
             query: (loginUser) => ({
                 url: '/staffs/login',
                 method: 'POST',
                 body: loginUser,
-        }),
-            invalidatesTags: ['Admin'],
-        }),
+            }),
+            // Capture token from the response headers
+            transformResponse: (response, meta) => {
+                console.log('Response Headers:', meta?.response?.headers);
+                const authToken = meta?.response?.Headers?.get('Authorization');
+                if (authToken) {
+                    // Save the token in localStorage
+                    localStorage.setItem('authToken', authToken.split(' ')[1]); // Remove 'Bearer ' from token
+                    console.log('Token:', authToken);
+                } else {
+                    console.log('No token found in headers');
+                }
 
+                // Return the response body
+                return response;
+            },
+        }),
         createCampus: builder.mutation({
             query: (addCampus) => ({
-                url: 'admin/campuses',
+                url: '/admin/campuses',
                 method: 'POST',
                 body: addCampus,
             }),
-            invalidatesTags: ['Admin'],
+            invalidatesTags: ['Campuses'],
         }),
-
         fetchCampuses: builder.query({
-            query: () => '/admin/faculties',
-            providesTags: ['Admin'],
+            query: () => '/admin/campuses',
+            providesTags: ['Campuses'],
         }),
-
         createFaculty: builder.mutation({
             query: (addFaculty) => ({
                 url: '/admin/faculties',
                 method: 'POST',
-                body: addFaculty
+                body: addFaculty,
             }),
-            invalidatesTags: ['Admin'],
+            invalidatesTags: ['Faculties'],
         }),
-
         fetchFaculties: builder.query({
             query: () => '/admin/faculties',
-            providesTags: ['Admin'],
-        })
-      
-    })
-})
+            providesTags: ['Faculties'],
+        }),
+    }),
+});
 
-export const { 
-    useCreateUserMutation, 
-    useLogUserInMutation, 
-    useCreateCampusMutation, 
-    useCreateFacultyMutation 
+export const {
+    useGetAllUsersQuery,
+    useCreateUserMutation,
+    useLogUserInMutation,
+    useCreateCampusMutation,
+    useFetchCampusesQuery,
+    useCreateFacultyMutation,
+    useFetchFacultiesQuery,
 } = adminApi;
 
 export default adminApi;
