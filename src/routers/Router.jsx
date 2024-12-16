@@ -8,7 +8,7 @@ import TrackRequest from "../components/Dashboard options/TrackRequest";
 import RequestDetails from "../components/Dashboard options/RequestDetails";
 import AddNewUser from "../pages/Admin/AddNewUser";
 import AdminDashboardLayout from "../pages/Admin/AdminDashboardLayout";
-import CreateCampus from "../pages/Admin/Campus/createCampus";
+import CreateCampus from "../pages/Admin/CreateCampus";
 
 const router = createBrowserRouter([
   {
