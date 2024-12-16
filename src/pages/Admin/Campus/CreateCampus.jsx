@@ -10,12 +10,12 @@ const CreateCampus = () => {
         formState: { errors },
     } = useForm();
 
-    const [CreateCampus, {isLoading, isError}] = useCreateCampusMutation()
+    const [createCampus, {isLoading, isError}] = useCreateCampusMutation()
     const onSubmit = async(data) =>{
         console.log(data)
 
         try {
-            const response = await CreateCampus(data).unwrap();
+            const response = await createCampus(data).unwrap();
             console.log("response", response)
             alert("Campus created successfully")
         } catch (error) {
