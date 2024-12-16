@@ -27,7 +27,7 @@ const AddNewUser = () => {
         if (!newUserData.administrativeRole) {
             delete newUserData.administrativeRole; 
         }
-        console.log("Final data", newUserData);
+        // console.log("Final data", newUserData);
 
         try {
             await createUser(newUserData).unwrap();
